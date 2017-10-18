@@ -7,14 +7,14 @@ login-page
 @section('content')
     <div class="login-box">
         <div class="login-logo">
-            <a href="/">{{config('app.name') }}</a>
+            <a href="{{config('app.url')}}">{{config('app.name') }}</a>
         </div>
         <!-- /.login-logo -->
 
         <div class="login-box-body">
             <p class="login-box-msg">{{ trans('back-project::base.login_message') }}</p>
 
-            <form class="form-horizontal" role="form" method="POST" action="{{ url('login') }}">
+            <form role="form" method="POST" action="{{ url('login') }}">
                 {{ csrf_field() }}
 
                 <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">

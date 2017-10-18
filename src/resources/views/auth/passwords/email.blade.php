@@ -8,13 +8,13 @@
 @section('content')
   <div class="login-box">
     <div class="login-logo">
-      <a href="/">{{config('app.name') }}</a>
+      <a href="{{config('app.url')}}">{{config('app.name') }}</a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">{{ trans('back-project::base.forgot_password_message') }}</p>
 
-        <form class="form-horizontal" role="form" method="POST" action="{{ url('password/email') }}">
+        <form role="form" method="POST" action="{{ url('password/email') }}">
             {{ csrf_field() }}
 
             <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">

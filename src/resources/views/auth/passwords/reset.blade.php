@@ -8,13 +8,13 @@
 @section('content')
   <div class="register-box">
     <div class="register-logo">
-      <a href="/">{{config('app.name') }}</a>
+      <a href="{{config('app.url')}}">{{config('app.name') }}</a>
     </div>
 
     <div class="register-box-body">
       <p class="register-box-msg">{{ trans('back-project::base.reset_password') }}</p>
 
-      <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/reset') }}">
+      <form role="form" method="POST" action="{{ url('/password/reset') }}">
         {!! csrf_field() !!}
 
         <input type="hidden" name="token" value="{{ $token }}">
