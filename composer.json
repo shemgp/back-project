@@ -21,7 +21,6 @@
     "infyomlabs/laravel-generator": "dev-5.5-datagrid-bootform-patches",
     "infyomlabs/adminlte-templates": "dev-5.5-datagrid-bootform-patches",
     "infyomlabs/swagger-generator": "dev-master",
-    "prettus/l5-repository": "dev-master",
     "aginev/datagrid": "dev-filters_null_values_etc-for_5.5",
     "watson/bootstrap-form": "dev-master"
   },
