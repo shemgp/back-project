@@ -19,6 +19,13 @@ See [CHANGELOG.md](https://github.com/afrittella/back-project/blob/master/CHANGE
 - Media Manager: you can upload media as backend user or manage all media uploaded by other users as administrator (see [Media Manager](#media-manager))
 - Social Login
 
+### Quick Install
+
+Run:
+```
+vendor/afrittella/back-project/bin/init.sh
+```
+
 ### Installation
 ```
 composer require afrittella/back-project
