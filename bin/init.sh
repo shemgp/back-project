@@ -108,8 +108,13 @@ else
 	echo "done"
 fi
 
-echo "Configuring back-project (3/3).."
+echo "Configuring back-project & infyom (3/3)..."
 php artisan vendor:publish --all
+
+php artisan infyom:publish
+sed -i -e "s#'default_layout'.*=>.*'layouts.app'#'default_layout'    => 'back-project::layouts.admin'#g" config/infyom/laravel_generator.php
+php artisan infyom.publish:layout
+sed -i -e '/Auth::routes();/d' routes/web.php
 
 find database/migrations/ -iname *permission_tables* | tail -n +2 | xargs rm > /dev/null
 php artisan migrate
