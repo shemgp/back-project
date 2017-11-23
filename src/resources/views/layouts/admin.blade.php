@@ -23,7 +23,7 @@
     @stack('meta')
 
     @stack('before_styles')
-
+    <link href="{{ asset('vendor/bower_components/') }}/toastr/toastr.min.css" rel="stylesheet">
     <link href="{{ asset('vendor/adminlte/') }}/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
@@ -34,6 +34,8 @@
 @stack('after_styles')
 
 @stack('head_scripts')
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script src="{{ asset('vendor/bower_components') }}/toastr/toastr.js"></script>
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -62,6 +64,27 @@
         </section>
 
         <section class="content">
+            <?php
+                if (!session()->get('flash_notification'))
+                {
+                    $toastr = session()->get('toastr::messages');
+                    if (!$toastr)
+                        $toastr = [];
+                    $messages = null;
+                    foreach($toastr as $message)
+                    {
+                        $message['important'] = false;
+                        $message['overlay'] = false;
+                        $message['level'] = $message['type'];
+                        $messages[] = $message;
+                    }
+                    session(['flash_notification' => collect($messages)]);
+                }
+            ?>
+            @include('vendor.flash.message')
+            <script>$('.alert').hide();</script>
+            {!! Toastr::message() !!}
+
             @yield('content')
         </section>
     </div>
@@ -71,7 +94,6 @@
 <!-- /wrapprer -->
 
 @stack('before_scripts')
-<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
 <script>window.jQuery || document.write('<script src="{{ asset('vendor/adminlte') }}/plugins/jQuery/jQuery-2.2.3.min.js"><\/script>')</script>
 <!-- Bootstrap 3.3.5 -->
 <script src="{{ asset('vendor/adminlte') }}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>

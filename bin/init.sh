@@ -108,6 +108,21 @@ else
 	echo "done"
 fi
 
+echo "Installing toastr as Flash..."
+composer require fxp/composer-asset-plugin
+cat composer.json | jq ' .config += {
+	"fxp-asset": {
+            "installer-paths": {
+                "npm-asset-library": "pulibc/vendor/npm_components",
+                "bower-asset-library": "public/vendor/bower_components"
+            }
+        }
+	}' | sponge composer.json
+cat composer.json | jq ' .extra.laravel."dont-discover" += ["laracasts/flash"]' | sponge composer.json
+composer require brian2694/laravel-toastr bower-asset/toastr
+sed -i -e "/'Flash'/d" config/app.php
+sed -i -e "/'View'.*=>.*/a \        'Flash' => Brian2694\\\Toastr\\\Facades\\\Toastr::class," config/app.php
+
 echo "Configuring back-project & infyom (3/3)..."
 php artisan vendor:publish --all
 
