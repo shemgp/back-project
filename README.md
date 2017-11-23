@@ -21,8 +21,8 @@ See [CHANGELOG.md](https://github.com/afrittella/back-project/blob/master/CHANGE
 
 ### Quick Install
 
-Run:
 ```
+composer require afrittella/back-project
 vendor/afrittella/back-project/bin/init.sh
 ```
 
