@@ -87,10 +87,13 @@ sed -i .env -e '/ENABLE_USER_TRACKING_MODEL.*/d'
 sed -i .env -e '/APP_URL/a ENABLE_USER_TRACKING_MODEL=true'
 echo "done"
 
-echo -n "Configuring back-project (2/3)..."
-if ! grep -i afrittella app/Http/Kernel.php > /dev/null; then
-	sed -i -e "s#'guest'.*#'guest' => \\\\Afrittella\\\\BackProject\\\\Http\\\\Middleware\\\\RedirectIfAuthenticated::class,\n        'admin' => \\\\Afrittella\\\\BackProject\\\\Http\\\\Middleware\\\\Admin::class,\n        'role' => \\\\Afrittella\\\\BackProject\\\\Http\\\\Middleware\\\\Role::class,#" app/Http/Kernel.php
-fi
+echo -n "Configuring back-project Kernel.php (2/3)..."
+sed -i -e "/'guest'/d" app/Http/Kernel.php
+sed -i -e "/'admin'.*Afrittella/d" app/Http/Kernel.php
+sed -i -e "/'role'.*Afrittella/d" app/Http/Kernel.php
+sed -i -e "/'permission'.*Spatie/d" app/Http/Kernel.php
+sed -i -e "/.*'can'.*/a \        'guest' => \\\\Afrittella\\\\BackProject\\\\Http\\\\Middleware\\\\RedirectIfAuthenticated::class,\n\        'admin' => \\\\Afrittella\\\\BackProject\\\\Http\\\\Middleware\\\\Admin::class,\n        'role' => \\\\Afrittella\\\\BackProject\\\\Http\\\\Middleware\\\\Role::class," app/Http/Kernel.php
+sed -i -e "/.*'role'.*=>.*Afrittella.*/a \        'permission' => \\\\Spatie\\\\Permission\\\\Middlewares\\\\PermissionMiddleware::class," app/Http/Kernel.php
 echo "done"
 
 echo "Running dump-autoload..."
