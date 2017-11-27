@@ -96,7 +96,9 @@ sed -i .env -e '/ENABLE_USER_TRACKING_MODEL.*/d'
 sed -i .env -e '/APP_URL/a ENABLE_USER_TRACKING_MODEL=true'
 echo "done"
 
-echo -n "Configuring back-project Kernel.php (2/3)..."
+echo -n "Configuring back-project Kernel.php & app.php (2/3)..."
+sed -i -e "/'date_format'/d" config/app.php
+sed -i -e "/'timezone'.*/a \    'date_format' => 'Y-m-d H:i:s e'," config/app.php
 sed -i -e "/'guest'/d" app/Http/Kernel.php
 sed -i -e "/'admin'.*Afrittella/d" app/Http/Kernel.php
 sed -i -e "/'role'.*Afrittella/d" app/Http/Kernel.php
