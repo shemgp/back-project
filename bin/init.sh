@@ -25,7 +25,7 @@ else
 fi
 
 echo "Requiring afrittella/back-project..."
-composer require afrittella/back-project
+composer require afrittella/back-project cweagans/composer-patches
 
 echo -n "Updating composer.json to get custom patches..."
 cat composer.json | jq ' .repositories += {"backproject":{"type":"vcs","url":"https://github.com/shemgp/back-project.git"},"laravel-generator":{"type":"vcs","url":"https://github.com/shemgp/laravel-generator.git"},"adminlte-templates":{"type":"vcs","url":"https://github.com/shemgp/adminlte-templates.git"},"datagrid":{"type":"vcs","url":"https://github.com/shemgp/datagrid.git"},"boot-form":{"type":"vcs","url":"https://github.com/shemgp/bootstrap-form.git"}}' | sponge composer.json
@@ -33,6 +33,15 @@ cat composer.json | jq ' .repositories += {"backproject":{"type":"vcs","url":"ht
 cat composer.json | jq ' .require += {"afrittella/back-project": "dev-changes"}' | sponge composer.json
 
 cat composer.json | jq ' . += {"minimum-stability": "dev"}' | sponge composer.json
+
+cat composer.json | jq ' . +=   {"extra": {
+    "patches": {
+      "laravel/framework": {
+        "Patches": "https://github.com/laravel/framework/compare/5.5...shemgp:5.5.diff"
+      }
+    }
+  }
+}' | sponge composer.json
 echo "done"
 
 echo "Getting patches.."
