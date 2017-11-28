@@ -34,7 +34,7 @@ cat composer.json | jq ' .require += {"afrittella/back-project": "dev-changes"}'
 
 cat composer.json | jq ' . += {"minimum-stability": "dev"}' | sponge composer.json
 
-cat composer.json | jq ' . +=   {"extra": {
+cat composer.json | jq ' . += {"extra": {
     "patches": {
       "laravel/framework": {
         "Patches": "https://github.com/laravel/framework/compare/5.5...shemgp:5.5.diff"
@@ -42,6 +42,14 @@ cat composer.json | jq ' . +=   {"extra": {
     }
   }
 }' | sponge composer.json
+cat composer.json | jq ' .extra += {
+    "laravel": {
+      "dont-discover": [
+	    "laracasts/flash"
+      ]
+    }
+  }' | sponge composer.json
+
 echo "done"
 
 echo "Getting patches.."
