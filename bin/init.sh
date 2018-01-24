@@ -37,7 +37,7 @@ echo "done"
 
 echo "Getting patches.."
 composer update
-composer require doctrine/dbal
+composer require doctrine/dbal brian2694/laravel-toastr
 composer require "fxp/composer-asset-plugin:~1.3"
 cat composer.json | jq ' .config += {"fxp-asset": { "installer-paths": {"bower-asset-library": "public/vendor/bower_components", "npm-asset-library": "public/vendor/npm_components"}}}' | sponge composer.json
 composer require bower-asset/toastr
