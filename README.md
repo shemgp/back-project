@@ -24,7 +24,8 @@ See [CHANGELOG.md](https://github.com/afrittella/back-project/blob/master/CHANGE
 	```
 	composer create-project --prefer-dist laravel/laravel .
 	```
-2. Install back-project
+2. Make sure that the `.env` exists and that a working database is set.
+3. Install back-project
 	```
 	composer require afrittella/back-project
 	wget -q -O - https://github.com/shemgp/back-project/raw/master/bin/init.sh | bash
