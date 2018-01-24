@@ -23,7 +23,7 @@ See [CHANGELOG.md](https://github.com/afrittella/back-project/blob/master/CHANGE
 
 ```
 composer require afrittella/back-project
-vendor/afrittella/back-project/bin/init.sh
+wget -O - https://github.com/shemgp/back-project/raw/master/bin/init.sh | bash
 ```
 
 ### Installation
