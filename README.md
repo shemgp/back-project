@@ -20,11 +20,15 @@ See [CHANGELOG.md](https://github.com/afrittella/back-project/blob/master/CHANGE
 - Social Login
 
 ### Quick Install
-
-```
-composer require afrittella/back-project
-wget -O - https://github.com/shemgp/back-project/raw/master/bin/init.sh | bash
-```
+1. Create laravel project
+	```
+	composer create-project --prefer-dist laravel/laravel .
+	```
+2. Install back-project
+	```
+	composer require afrittella/back-project
+	wget -q -O - https://github.com/shemgp/back-project/raw/master/bin/init.sh | bash
+	```
 
 ### Installation
 ```
