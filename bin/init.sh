@@ -151,9 +151,9 @@ sed -i -e "/'View'.*=>.*/a \        'Flash' => Brian2694\\\Toastr\\\Facades\\\To
 echo "Configuring back-project & infyom (3/3)..."
 php artisan vendor:publish --all
 
-php artisan infyom:publish
+php artisan infyom:publish -n
 sed -i -e "s#'default_layout'.*=>.*'layouts.app'#'default_layout'    => 'back-project::layouts.admin'#g" config/infyom/laravel_generator.php
-php artisan infyom.publish:layout
+php artisan infyom.publish:layout -n
 sed -i -e '/Auth::routes();/d' routes/web.php
 
 find database/migrations/ -iname *permission_tables* | tail -n +2 | xargs rm > /dev/null
