@@ -1,3 +1,9 @@
+<?php
+  //set headers to NOT cache a page
+  header("Cache-Control: no-store, no-cache, must-revalidate"); //HTTP 1.1
+  header("Pragma: no-cache"); //HTTP 1.0
+  header("Expires: Thu, 19 Nov 1981 08:52:00 GMT"); // Date in the past
+?>
 {{-- Admin layout - author <afrittella> --}}<!DOCTYPE html>
 <html lang="en">
 
@@ -53,7 +59,7 @@
 
 <!-- main-menu -->
 @include('back-project::inc.sidebar')
-<!-- /main-menu
+<!-- /main-menu -->
 
     <!-- content -->
     <div class="content-wrapper">
