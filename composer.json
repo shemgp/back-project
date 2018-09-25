@@ -22,7 +22,7 @@
         "infyomlabs/adminlte-templates": "dev-5.5-datagrid-bootform-patches",
         "infyomlabs/swagger-generator": "dev-master",
         "aginev/datagrid": "dev-filters_null_values_etc-for_5.5",
-        "watson/bootstrap-form": "dev-master"
+        "watson/bootstrap-form": "dev-changes"
     },
     "license": "MIT",
     "authors": [{
